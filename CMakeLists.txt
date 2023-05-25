@@ -6,6 +6,7 @@ project(pointless-fortran Fortran)
 set(SOURCES
     mymodule.f90
     dependencies.f90
+    custom_type.f90
 )
 
 set(EXEC_SRC main.f90)
@@ -29,6 +30,7 @@ install(TARGETS fortranlib DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/lib)
 install(TARGETS fortran_exec DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
 # Copy dependencies.mod after build
+# not 100% convinced this is necessary, but it might become later
 add_custom_command(TARGET fortranlib POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
         ${CMAKE_CURRENT_BINARY_DIR}/dependencies.mod
